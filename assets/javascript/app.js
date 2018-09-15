@@ -1,5 +1,5 @@
 
-
+// answer list
 var constel = [
 
     {
@@ -75,7 +75,7 @@ var constel = [
         image: "assets/images/Virgo.jpg"
     },
 
-    //repeat from here to pull later
+    //repeat. not used
     {
         name: "Taurus",
         symbol: "♉︎",
@@ -122,6 +122,8 @@ var falseAnswer3;
 var nonAnswerDiv1;
 var nonAnswerDiv2;
 var nonAnswerDiv3;
+
+//counter for # of questions
 var counter = 0;
 
 //to remove roundanswer from constel and put in here.
@@ -143,18 +145,22 @@ var intervalId;
 
 
   function run(){
+    //decreasing time count by 1000
         intervalId = setInterval(decrement, 1000);
     };
     
+    //stop decreasing.
     function stop(){
         clearInterval(intervalId)
     };
     
+    //number decreasing on html
     function decrement(){
         number--;
         $(".consTime").html("OO:0"+number);
 
-        
+    
+    //when time runs out. wrong answer ++, move on to next question    
     if (number === 0) {
 
         counter++;
@@ -185,7 +191,7 @@ function gameStart (){
     run();
 
   
-
+    //selecting answer for each round
     roundAnswer = constel[Math.floor(Math.random()*3)];
     $(".mainImage").html('<img class="constImage" src="'+roundAnswer.image+'">');
     console.log(roundAnswer);
@@ -197,7 +203,7 @@ function gameStart (){
     possibleAnswer.splice(answerDiv, 1);
   
     
-    
+    //where to pull wrong answer. 
     if (constel.length > 8) {
     falseAnswer1 = constel[Math.floor(Math.random()*2)+3];
     nonAnswerDiv1 = $("#answer"+possibleAnswer[0]).html(falseAnswer1.name);
@@ -220,11 +226,12 @@ function gameStart (){
 };
 
 
-
+//receiving user answer
 $(".answer").on("click", function(){
 
     counter++;
     
+    //user select corret answer
     if ((this).id == roundAnswerId){
         rightAnswer++
         $(".rightCount").html(rightAnswer);
@@ -232,6 +239,8 @@ $(".answer").on("click", function(){
         possibleAnswer = [0, 1, 2, 3];
         number = 10;
     } else {
+
+        //user select wrong answer
         wrongAnswer++
         $(".wrongCount").html(wrongAnswer);
         usedAnswer = constel.splice(indexRoundAnswer, 1);
@@ -239,6 +248,7 @@ $(".answer").on("click", function(){
         number = 10;
     } ;
 
+    //game ends after answer 7th question
     if(counter === 7){
         alert("good job! you got "+rightAnswer+" points!!!")
         alert("Let's Play Again")
