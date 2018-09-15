@@ -1,4 +1,3 @@
-
 // answer list
 var constel = [
 
