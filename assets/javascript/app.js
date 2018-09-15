@@ -142,16 +142,7 @@ var number = 10;
 var intervalId;
 
 
-
-// console.log(constel[Math.floor(Math.random()*12)].name);
-gameStart();
-
-function gameStart (){
-
-    decrement();
-    run();
-
-    function run(){
+  function run(){
         intervalId = setInterval(decrement, 1000);
     };
     
@@ -166,6 +157,7 @@ function gameStart (){
         
     if (number === 0) {
 
+        counter++;
         stop();
         wrongAnswer++
         $(".wrongCount").html(wrongAnswer);
@@ -173,10 +165,26 @@ function gameStart (){
         possibleAnswer = [0, 1, 2, 3];
         number = 10;
         gameStart ();
+        if(counter === 7){
+            alert("good job! you got "+rightAnswer+" points!!!")
+            alert("Let's Play Again")
+            window.location.reload();
+        };
+    
         
         };
     };
 
+// console.log(constel[Math.floor(Math.random()*12)].name);
+gameStart();
+
+function gameStart (){
+
+    stop();
+    decrement();
+    run();
+
+  
 
     roundAnswer = constel[Math.floor(Math.random()*3)];
     $(".mainImage").html('<img class="constImage" src="'+roundAnswer.image+'">');
@@ -222,11 +230,13 @@ $(".answer").on("click", function(){
         $(".rightCount").html(rightAnswer);
         usedAnswer = constel.splice(indexRoundAnswer, 1);
         possibleAnswer = [0, 1, 2, 3];
+        number = 10;
     } else {
         wrongAnswer++
         $(".wrongCount").html(wrongAnswer);
         usedAnswer = constel.splice(indexRoundAnswer, 1);
         possibleAnswer = [0, 1, 2, 3];
+        number = 10;
     } ;
 
     if(counter === 7){
