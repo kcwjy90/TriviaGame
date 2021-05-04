@@ -10,4 +10,4 @@ When to Play :
     2. When you want to look at retty images for your tired eyes.
 
 For troubleshoot, questions, or comments :
-    wondlek@hotmail.com
+kcwjy90@gmail.com
